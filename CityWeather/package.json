@@ -1,0 +1,16 @@
+{
+  "name": "cityweather",
+  "version": "1.0.0",
+  "description": "REST based service to retrieve information about the weather in different cities",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.3.4",
+    "restify": "^7.2.1"
+  }
+}
