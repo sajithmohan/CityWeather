@@ -25,8 +25,11 @@ class CityWeather{
             this.weather = response.body;
         }
         catch(err){
-            if(err.name == 'StatusCodeError'){
+            if(err.statusCode == 404){
                 throw new errors.NotFoundError('City not found');
+            }
+            if(err.statusCode == 401){
+                throw new errors.InternalServerError('Invalid/Expired API Key');
             }
             throw new errors.InternalServerError('Something went wrong');
         }
