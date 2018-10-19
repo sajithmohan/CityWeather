@@ -1,0 +1,22 @@
+version: '3'
+services:
+  cityweather:
+    build:
+      context: ./CityWeather
+      dockerfile: Dockerfile.test
+    ports:
+      - "8080:8080"
+    links:
+      - mongodb
+    environment:
+      MONGO_HOST: mongodb
+      MONGO_DB: test_cityweather
+      MONGO_PORT: 27017
+      OPENWEATHERMAP_APIKEY: apikey
+    volumes:
+      - ./CityWeather/:/usr/src/CityWeather/
+      - /usr/src/CityWeather/node_modules
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
