@@ -60,10 +60,9 @@ const error_response = {
 };
 
 describe('Weather', function () {
-    it('returns weather api with key', function(done){
+    it('returns weather data from API, for valid id', function(done){
         var called = false;
         nock('http://api.openweathermap.org').get('/data/2.5/weather').query(function(actualQueryObject){
-            console.log('----->>', actualQueryObject);
             if(actualQueryObject.id == '123'){
                 called = true;
                 return true;
@@ -71,14 +70,14 @@ describe('Weather', function () {
         }).reply(200, success_response);
 
         chai.request(server).get('/cities/123/weather').end(function(err, res){
-            res.body.type.should.be.eq('Clear');
+            res.body.data.type.should.be.eq('Clear');
             res.status.should.be.eq(200);
             called.should.be.eq(true);
             done();
         });
     });
 
-    it('returns 404 for invalid key', function(done){
+    it('returns 404 for invalid City Id', function(done){
         var called = false;
         nock('http://api.openweathermap.org').get('/data/2.5/weather').query(function(actualQueryObject){
             if(actualQueryObject.id == '111'){
