@@ -1,0 +1,24 @@
+version: '3'
+services:
+  cityweather:
+    build: ./CityWeather
+    ports:
+      - "8080:8080"
+    links:
+      - mongodb
+    environment:
+      MONGO_HOST: mongodb
+      MONGO_DB: cityweather
+      MONGO_PORT: 27017
+      OPENWEATHERMAP_APIKEY: 0d2d044ac906ad38d3b37db4e8ab9b95
+    volumes:
+      - ./CityWeather/:/usr/src/CityWeather/
+      - /usr/src/CityWeather/node_modules
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+  mongoseed:
+    build: ./mongoseed
+    links:
+      - mongodb
