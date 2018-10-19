@@ -1,18 +1,14 @@
-"use strict";
+'use strict';
 
 const utils = require('./lib/utils.js');
-const errs = require('restify-errors');
 const cityController = require('./controllers/city.js');
 
-function loadRoutesfn(server){
+const loadRoutesfn = (server) =>{
     server.get('/cities', utils.promiseController(cityController.list));
-}
+    server.get('/cities/:id', utils.promiseController(cityController.details));
+};
 
 module.exports = {
     loadRoutes: loadRoutesfn
-}
-
-
-
-
+};
 

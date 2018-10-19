@@ -4,13 +4,22 @@
   "description": "REST based service to retrieve information about the weather in different cities",
   "main": "server.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha --timeout 10000 --exit",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "mongoose": "^5.3.4",
+    "nock": "^10.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "restify": "^7.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "eslint": "^5.7.0",
+    "mocha": "^5.2.0"
   }
 }
